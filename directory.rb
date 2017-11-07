@@ -18,9 +18,9 @@ end
 
 def print(names)
   names.each do |x|
-    if x[:name].to_s[0] == "H"
+    if x[:name].to_s.length > 12
       puts "#{x[:name]} (#{x[:cohort]} cohort)"
-    else puts "That name doesn't begin with H"
+    else puts "That name isn't longer than 12 characters"
     end
   end
 end
