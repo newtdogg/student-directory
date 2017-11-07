@@ -4,7 +4,7 @@ def input_students
   students = []
   name = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: cohort}
+    students << {name: name, cohort: :novemeber}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -17,8 +17,11 @@ def print_header
 end
 
 def print(names)
-  names.each_with_index do |x, index|
-    puts "#{index}. #{x[:name]} (#{x[:cohort]} cohort)"
+  names.each do |x|
+    if x[:name].to_s[0] == "H"
+      puts "#{x[:name]} (#{x[:cohort]} cohort)"
+    else puts "That name doesn't begin with H"
+    end
   end
 end
 
