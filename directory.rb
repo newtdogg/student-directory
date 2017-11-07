@@ -1,32 +1,36 @@
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   students = []
+  puts "Enter name"
   name = gets.chomp
+  puts "Enter cohort"
+  cohort = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: :novemeber}
+    students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
+    puts "Enter name"
     name = gets.chomp
+    puts "Enter cohort"
+    cohort = gets.chomp
   end
   students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(100)
+  puts "-------------".center(100)
 end
 
 def print(names)
-  names.each do |x|
-    if x[:name].to_s.length > 12
-      puts "#{x[:name]} (#{x[:cohort]} cohort)"
-    else puts "That name isn't longer than 12 characters"
-    end
+  names.each_with_index do |x, index|
+    puts "#{index}. #{x[:name]} (#{x[:cohort]} cohort)".center(100)
   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students".center(100)
 end
 
 students = input_students
