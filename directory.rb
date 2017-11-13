@@ -68,7 +68,7 @@ def input_students
 
   while !name.empty? do
     @students << {name: name, cohort: cohort}
-    puts "Now we have #{@students.count} students"
+    puts "Now we have #{@students.count} #{plural(@students)}"
     puts "Enter name"
     name = gets.chomp
     puts "Enter cohort"
@@ -89,8 +89,19 @@ end
 end
 
 def print_footer(names)
-puts "Overall, we have #{names.count} great students".center(100)
+  if names.count > 1
+    puts "Overall, we have #{names.count} great #{plural(@students)}".center(100)
+  else
+    puts "Overall, we have #{names.count} great #{plural(@students)}".center(100)
+  end
+end
+
+def plural(names)
+  if names.count > 1
+    return "students"
+  else
+    return "student"
+  end
 end
 
 interactive_menu
-
