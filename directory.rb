@@ -6,12 +6,20 @@ def interactive_menu
   end
 end
 
+def print_menu
+  puts "1. Input the sudents"
+  puts "2. Show the students"
+  puts "3. Save to directory.csv"
+  puts "4. Load from directory.csv"
+  puts "9. Exit"
+end
+
 def process(selection)
   case selection
   when "1"
     @students = input_students
   when "2"
-    show_students
+    print(@students)
   when "3"
     save_students
   when "4"
@@ -36,10 +44,13 @@ def input_students
   @students
 end
 
-def show_students
-  print_header
-  print(@students)
-  print_footer(@students)
+def print(names)
+  puts "The students of Villains Academy".center(100)
+  puts "-------------".center(100)
+  names.each_with_index do |x, index|
+    puts "#{index}. #{x[:name]} (#{x[:cohort]} cohort)".center(100)
+  end
+  puts "Overall, we have #{names.count} great #{plural(@students)}".center(100)
 end
 
 def save_students
@@ -59,32 +70,6 @@ def load_students
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
-end
-
-
-
-def print_menu
-  puts "1. Input the sudents"
-  puts "2. Show the students"
-  puts "3. Save to directory.csv"
-  puts "4. Load from directory.csv"
-  puts "9. Exit"
-end
-
-
-def print_header
-  puts "The students of Villains Academy".center(100)
-  puts "-------------".center(100)
-end
-
-def print(names)
-  names.each_with_index do |x, index|
-    puts "#{index}. #{x[:name]} (#{x[:cohort]} cohort)".center(100)
-  end
-end
-
-def print_footer(names)
-    puts "Overall, we have #{names.count} great #{plural(@students)}".center(100)
 end
 
 def enter_info
