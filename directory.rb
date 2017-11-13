@@ -42,6 +42,7 @@ def process(selection)
   end
 end
 
+
 def print_menu
   puts "1. Input the sudents"
   puts "2. Show the students"
@@ -59,20 +60,12 @@ end
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-
   @students = []
-  puts "Enter name"
-  name = gets.chomp
-  puts "Enter cohort"
-  cohort = gets.chomp
-
-  while !name.empty? do
-    @students << {name: name, cohort: cohort}
+  enter_info
+  while !@name.empty? do
+    @students << {name: @name, cohort: @cohort}
     puts "Now we have #{@students.count} #{plural(@students)}"
-    puts "Enter name"
-    name = gets.chomp
-    puts "Enter cohort"
-    cohort = gets.chomp
+    enter_info
   end
   @students
 end
@@ -94,6 +87,13 @@ def print_footer(names)
   else
     puts "Overall, we have #{names.count} great #{plural(@students)}".center(100)
   end
+end
+
+def enter_info
+  puts "Enter name"
+  @name = gets.chomp
+  puts "Enter cohort"
+  @cohort = gets.chomp
 end
 
 def plural(names)
