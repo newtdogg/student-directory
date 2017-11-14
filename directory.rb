@@ -2,7 +2,7 @@ def interactive_menu
   @students = []
   loop do
   print_menu
-  process(gets.chomp)
+  process(STDIN.gets.chomp)
   end
 end
 
@@ -33,7 +33,7 @@ end
 
 def input_students
   puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "To finish, just hit return three times"
   @students = []
   enter_info
   while !@name.empty? do
@@ -72,9 +72,21 @@ def load_students(filename = "students.csv") #load_students will load from stude
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first# first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+     puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
+
 def enter_info
   puts "Enter name"
-  @name = gets.chomp
+  @name = STDIN.gets.chomp
   puts "Enter cohort"
   @cohort = gets.chomp
 end
@@ -87,4 +99,5 @@ def plural(names)
   end
 end
 
+try_load_students
 interactive_menu
